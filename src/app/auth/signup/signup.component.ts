@@ -21,7 +21,8 @@ export class SignupComponent implements OnInit {
     ]),
     password:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)])
-  }, { validators: [this.matchPassword.validate]});
+  },
+  { validators: [this.matchPassword.validate]});
 
   constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername) {
 
