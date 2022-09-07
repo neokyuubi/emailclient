@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MathPassword } from '../validators/math-password';
 import { UniqueUsername } from '../validators/unique-username';
@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
   { validators: [this.matchPassword.validate]});
 
   constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername) {
-
   }
 
   ngOnInit(): void {
