@@ -30,4 +30,9 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getControl(name:string)
+  {
+    return this.authForm.controls[name] as FormControl;
+  }
+
 }

@@ -4,23 +4,19 @@
         <label >Username:</label>
         <input formControlName="username">
     </div> -->
-    {{ authForm.controls['username'].errors | json }}
-    <app-input lable="Username" [control]="authForm.controls['unsername']"></app-input> 
+    <app-input lable="Username" [control]="getControl('username')"></app-input> 
 
     <div class="field">
         <label >Password:</label>
         <input formControlName="password">
     </div>
-    {{ authForm.controls['password'].errors | json }}
 
     <div class="field">
         <label >Password Confirmation:</label>
         <input formControlName="passwordConfirmation">
     </div>
-    {{ authForm.controls['passwordConfirmation'].errors | json }}
 
     <div>
         <button class="ui submit button primary">Submit</button>
     </div>
-    {{ authForm.errors | json }}
 </form>
