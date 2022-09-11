@@ -3,6 +3,13 @@
     <app-input lable="Username" [control]="getControl('username')" [inputType]="inputTypes.text"></app-input> 
     <app-input label="Password" [control]="getControl('password')" [inputType]="inputTypes.password"></app-input>
     <app-input label="Password Confirmation" [control]="getControl('passwordConfirmation')" [inputType]="inputTypes.password"></app-input>
+    
+    <div *ngIf="authForm.controls['password'].touched 
+    && authForm.controls['passwordConfirmation'].touched && authForm.errors?.['passwordsDontMatch']" class="ui red basic label">
+        <p >
+            Password and Password Confirmation must match !
+        </p>
+    </div>
     <div>
         <button class="ui submit button primary">Submit</button>
     </div>
