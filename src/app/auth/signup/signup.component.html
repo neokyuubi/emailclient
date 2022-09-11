@@ -1,21 +1,8 @@
 <h3>Create an account</h3>
 <form class="ui form" [formGroup]="authForm">
-    <!-- <div class="field">
-        <label >Username:</label>
-        <input formControlName="username">
-    </div> -->
-    <app-input lable="Username" [control]="getControl('username')"></app-input> 
-
-    <div class="field">
-        <label >Password:</label>
-        <input formControlName="password">
-    </div>
-
-    <div class="field">
-        <label >Password Confirmation:</label>
-        <input formControlName="passwordConfirmation">
-    </div>
-
+    <app-input lable="Username" [control]="getControl('username')" [inputType]="inputTypes.text"></app-input> 
+    <app-input label="Password" [control]="getControl('password')" [inputType]="inputTypes.password"></app-input>
+    <app-input label="Password Confirmation" [control]="getControl('passwordConfirmation')" [inputType]="inputTypes.password"></app-input>
     <div>
         <button class="ui submit button primary">Submit</button>
     </div>
