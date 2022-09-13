@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { inputTypes } from 'src/app/shared/input/inputTypes';
+import { AuthService } from '../auth.service';
 import { MathPassword } from '../validators/math-password';
 import { UniqueUsername } from '../validators/unique-username';
+import { SignupRequestBody } from './signup-request-body';
+
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +30,7 @@ export class SignupComponent implements OnInit {
 
   inputTypes = inputTypes;
 
-  constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername) {
+  constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername, private authService:AuthService) {
   }
 
   ngOnInit(): void {
@@ -36,6 +39,22 @@ export class SignupComponent implements OnInit {
   getControl(name:string)
   {
     return this.authForm.controls[name] as FormControl;
+  }
+
+  onSubmit()
+  {
+    if (this.authForm.invalid)
+    {
+      return;
+    }
+
+    const body = this.authForm.value as SignupRequestBody;
+    this.authService.signup(body)
+
+    .subscribe((result)=>
+    {
+
+    })
   }
 
 }
