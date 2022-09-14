@@ -53,17 +53,21 @@ export class SignupComponent implements OnInit {
     const body = this.authForm.value as SignupRequestBody;
     this.authService.signup(body)
     .subscribe({
-      // next:(value) => {
+      next:(value) => {
+        // navigate to some other route
+      },
+      error:(err) => {
+        console.log(err);
         
-      // },
-      // error:(err) => {
-      //   console.log(err);
-        
-      //   if (!err.status)
-      //   {
-      //     // this.authForm.setErrors({noConnection:true});
-      //   }
-      // }
+        if (!err.status)
+        {
+          this.authForm.setErrors({noConnection:true});
+        }
+        else
+        {
+          this.authForm.setErrors({unknownError:true});
+        }
+      }
     })
   }
 

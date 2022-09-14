@@ -9,7 +9,7 @@ import { SignupResponse } from './signup/signup-response';
 })
 export class AuthService {
 
-  urlPrefix:string = "https://api.angular-email/auth/";
+  urlPrefix:string = "https://api.angular-email.com/auth/";
 
   constructor(private http:HttpClient) { }
 

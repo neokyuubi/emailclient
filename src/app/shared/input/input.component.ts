@@ -16,7 +16,7 @@ export class InputComponent implements OnInit {
   @Input() inputType:inputTypes = inputTypes.text;
 
   ngOnInit(): void {
-    console.log(this.inputType);
+    console.log("this.inputType", this.inputType);
     
   }
 
