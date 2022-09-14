@@ -17,6 +17,6 @@
         </p>
     </div>
     <div>
-        <button class="ui submit button primary">Submit</button>
+        <button [disabled]="!authForm.valid" class="ui submit button primary">Submit</button>
     </div>
 </form>
