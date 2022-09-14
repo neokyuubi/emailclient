@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { catchError, map } from 'rxjs';
 import { inputTypes } from 'src/app/shared/input/inputTypes';
 import { AuthService } from '../auth.service';
 import { MathPassword } from '../validators/math-password';
 import { UniqueUsername } from '../validators/unique-username';
 import { SignupRequestBody } from './signup-request-body';
+import { SignupResponse } from './signup-response';
 
 
 @Component({
@@ -50,10 +52,18 @@ export class SignupComponent implements OnInit {
 
     const body = this.authForm.value as SignupRequestBody;
     this.authService.signup(body)
-
-    .subscribe((result)=>
-    {
-
+    .subscribe({
+      // next:(value) => {
+        
+      // },
+      // error:(err) => {
+      //   console.log(err);
+        
+      //   if (!err.status)
+      //   {
+      //     // this.authForm.setErrors({noConnection:true});
+      //   }
+      // }
     })
   }
 
