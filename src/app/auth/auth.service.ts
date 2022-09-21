@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { UsernameResult } from './username-result.boolean';
 import { SignupRequestBody } from './signup/signup-request-body';
 import { SignupResponse } from './signup/signup-response';
+import { BehaviorSubject, tap } from 'rxjs';
+import { CheckAuthResponse } from './CheckAuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +12,35 @@ import { SignupResponse } from './signup/signup-response';
 export class AuthService {
 
   urlPrefix:string = "https://api.angular-email.com/auth/";
+  signedIn$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    console.log(this.http);
+  }
 
   usernameAvailable(username:string)
+  {   
+    return this.http.post<UsernameResult>(`${this.urlPrefix}username`,{username});
+  }
+
+  signin()
   {
-    console.log(`${this.urlPrefix}username`);
     
-    return this.http.post<UsernameResult>(`${this.urlPrefix}username`,
-    {
-        username
-    })
   }
 
   signup(body:SignupRequestBody)
   {
-    return this.http.post<SignupResponse>(`${this.urlPrefix}signup`, body)
+    return this.http.post<SignupResponse>(`${this.urlPrefix}signup`, body).pipe(tap((result)=>
+    {
+      this.signedIn$.next(true);
+    }));
+  }
+
+  checkAuth()
+  {
+    return this.http.get<CheckAuthResponse>(`${this.urlPrefix}signedin`).pipe(tap(({autenticated})=>
+    {
+      this.signedIn$.next(autenticated);
+    }));
   }
 }

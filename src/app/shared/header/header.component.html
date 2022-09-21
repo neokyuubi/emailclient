@@ -1,10 +1,15 @@
 <div class="ui secondary pointing menu">
     <a routerLink="/" class="item">Angular Email</a>
 
-    <div class="right menu">
-        <a routerLink="/inbox" routerLinkActive="active" class="ui item">Inbox</a>
-        <a routerLink="/signout" routerLinkActive="active" class="ui item">Sign Out</a>
-        <a routerLink="/" routerLinkActive="active" class="ui item">Sign In</a>
-        <a routerLink="/singup" routerLinkActive="active" class="ui item">Sign Up</a>
+    <div class="right menu" [ngSwitch]="signedIn$ | async">
+        <ng-container *ngSwitchCase="true">
+            <a routerLink="/inbox" routerLinkActive="active" class="ui item">Inbox</a>
+            <a routerLink="/signout" routerLinkActive="active" class="ui item">Sign Out</a>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="ui item">Sign In</a>
+            <a routerLink="/signup" routerLinkActive="active" class="ui item">Sign Up</a>
+        </ng-container>
     </div>
+    
 </div>

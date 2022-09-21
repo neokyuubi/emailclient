@@ -25,8 +25,8 @@ export class SignupComponent implements OnInit {
     ], [
       this.uniqueUsername.validate.bind(this.uniqueUsername) // if we dont want to make validate as an arrow function
     ]),
-    password:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)])
+    password:new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
+    passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)])
   },
   { validators: [this.matchPassword.validate]});
 
