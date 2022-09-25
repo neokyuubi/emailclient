@@ -8,11 +8,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() signedIn$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  @Input() signedIn$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); //async in html instead of subscribe
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log("HeaderComponent signedIn", this.signedIn$);
+    
   }
 
 }

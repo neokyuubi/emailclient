@@ -1,12 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { catchError, map } from 'rxjs';
 import { inputTypes } from 'src/app/shared/input/inputTypes';
 import { AuthService } from '../auth.service';
 import { MathPassword } from '../validators/math-password';
 import { UniqueUsername } from '../validators/unique-username';
 import { SignupRequestBody } from './signup-request-body';
-import { SignupResponse } from './signup-response';
 
 
 @Component({

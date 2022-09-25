@@ -5,6 +5,8 @@ import { SignupRequestBody } from './signup/signup-request-body';
 import { SignupResponse } from './signup/signup-response';
 import { BehaviorSubject, tap } from 'rxjs';
 import { CheckAuthResponse } from './CheckAuthResponse';
+import { SigninResponse } from './signin/signin-response';
+import { SigninRequest } from './signin/signin-request';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +25,11 @@ export class AuthService {
     return this.http.post<UsernameResult>(`${this.urlPrefix}username`,{username});
   }
 
-  signin()
+  signin(body:SigninRequest)
   {
-    
+    return this.http.post<SigninResponse>(`${this.urlPrefix}signin`, body).pipe(tap(()=>{
+      this.signedIn$.next(true)
+    }));
   }
 
   signup(body:SignupRequestBody)
@@ -38,9 +42,17 @@ export class AuthService {
 
   checkAuth()
   {
-    return this.http.get<CheckAuthResponse>(`${this.urlPrefix}signedin`).pipe(tap(({autenticated})=>
+    return this.http.get<CheckAuthResponse>(`${this.urlPrefix}signedin`).pipe(tap(({authenticated}) =>
+    {      
+      this.signedIn$.next(authenticated);
+    }));
+  }
+
+  signout()
+  {
+    return this.http.post(`${this.urlPrefix}signout`, {}).pipe(tap(()=>
     {
-      this.signedIn$.next(autenticated);
+      this.signedIn$.next(false);
     }));
   }
 }

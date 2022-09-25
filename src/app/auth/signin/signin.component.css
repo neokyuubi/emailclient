@@ -1,0 +1,15 @@
+:host
+{
+    display: block;
+    padding-top: 2em;
+}
+
+.basic.label
+{
+    margin-bottom: .5em;
+}
+
+button
+{
+    margin-bottom: .5em
+}

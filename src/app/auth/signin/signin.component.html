@@ -1,1 +1,24 @@
-<p>signin works!</p>
+<h3>Login to you account</h3>
+<form class="ui form" [formGroup]="authForm" (ngSubmit)="onSubmit()"> 
+    <app-input label="Username" [control]="getControl('username')" [inputType]="inputTypes.text"></app-input> 
+    <app-input label="Password" [control]="getControl('password')" [inputType]="inputTypes.password"></app-input>
+    
+    <div *ngIf="authForm.controls['username'].touched 
+    && authForm.controls['password'].touched && authForm.errors?.['signInError']" class="ui red basic label">
+        <p *ngIf="authForm.errors?.['signInError']">
+            Email/Username not found or Invalid password
+        </p>
+        <!-- <p *ngIf="authForm.errors?.['noConnection']">
+            Please check your internet, sign up failed !
+        </p>
+        <p *ngIf="authForm.errors?.['unknownError']">
+            Failed to sign up !
+        </p> -->
+    </div>
+    <div>
+        <button [disabled]="!authForm.valid" class="ui submit button primary">Login</button>
+    </div>
+    <div>
+        {{ authForm.value | json}}
+    </div>
+</form>

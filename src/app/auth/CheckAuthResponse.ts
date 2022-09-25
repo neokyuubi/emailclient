@@ -1,4 +1,4 @@
 export interface CheckAuthResponse {
-    autenticated:boolean,
-    username:string
+    authenticated:boolean,
+    username:string|null
 }
