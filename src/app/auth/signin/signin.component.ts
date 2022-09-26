@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { inputTypes } from 'src/app/shared/input/inputTypes';
 import { AuthService } from '../auth.service';
 import { SigninRequest } from './signin-request';
@@ -25,7 +26,7 @@ export class SigninComponent implements OnInit {
     }
   )
 
-  constructor(private authService:AuthService) {}
+  constructor(private authService:AuthService, private router:Router) {}
 
   getControl(input:string)
   {
@@ -39,6 +40,7 @@ export class SigninComponent implements OnInit {
       {
         next:(value) =>
         {
+          this.router.navigate(['/inbox']);
           console.log("value", value);
           console.log("this.authService.signedIn$.getValue() on next", this.authService.signedIn$.getValue());
         },

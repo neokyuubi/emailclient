@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { inputTypes } from 'src/app/shared/input/inputTypes';
 import { AuthService } from '../auth.service';
 import { MathPassword } from '../validators/math-password';
@@ -30,7 +31,7 @@ export class SignupComponent implements OnInit {
 
   inputTypes = inputTypes;
 
-  constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername, private authService:AuthService) {
+  constructor(private matchPassword: MathPassword, private uniqueUsername:UniqueUsername, private authService:AuthService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class SignupComponent implements OnInit {
     this.authService.signup(body)
     .subscribe({
       next:(value) => {
-        // navigate to some other route
+        this.router.navigate(['/inbox']);
       },
       error:(err) => {
         console.log(err);
