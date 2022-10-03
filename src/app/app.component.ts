@@ -17,7 +17,12 @@ export class AppComponent {
 
   ngOnInit()
   {
-    this.authService.checkAuth().subscribe();
+    console.log("ngOnInit");
+    
+    this.authService.checkAuth().subscribe((result)=>
+    {
+      console.log("checkAuth in ngOnInit", result);
+    });
   }
 
 }

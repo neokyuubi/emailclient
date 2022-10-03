@@ -1,9 +1,42 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
+
+export interface EmailSummary
+{
+  id:string,
+  subject:string,
+  from:string
+}
+
+export interface Email
+{
+  id:string,
+  subject:string,
+  text:string
+  to:string
+  from:string,
+  html:string
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+  
+  private urlPrefix:string = "https://api.angular-email.com/emails/";
+
+  getEmails()
+  {
+    return this.http.get<EmailService[]>(`${this.urlPrefix}`).pipe(tap((data)=>{
+      console.log("EmailService", data);
+    }))
+  }
+
+  getEmail(id:string)
+  {
+    return this.http.get<Email>(`${this.urlPrefix}${id}`);
+  }
 }

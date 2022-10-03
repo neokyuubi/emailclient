@@ -35,20 +35,25 @@ export class SigninComponent implements OnInit {
 
   onSubmit()
   {
+    if (this.authForm.invalid)
+    {
+      return;
+    }
     const body = this.authForm.value as SigninRequest;
     this.authService.signin(body).subscribe(
       {
         next:(value) =>
         {
-          this.router.navigate(['/inbox']);
+          // this.router.navigate(['/inbox']);
+          this.router.navigateByUrl('/inbox')
           console.log("value", value);
-          console.log("this.authService.signedIn$.getValue() on next", this.authService.signedIn$.getValue());
+          // console.log("this.authService.signedIn$.getValue() on next", this.authService.signedIn$.getValue());
         },
         error:(err) =>
         {
           console.log("err", err);
           this.authForm.setErrors({signInError:true})
-          console.log("this.authService.signedIn$.getValue() on error", this.authService.signedIn$.getValue());
+          // console.log("this.authService.signedIn$.getValue() on error", this.authService.signedIn$.getValue());
         }
       }
     )

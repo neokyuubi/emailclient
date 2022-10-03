@@ -13,11 +13,10 @@ import { SigninRequest } from './signin/signin-request';
 })
 export class AuthService {
 
-  urlPrefix:string = "https://api.angular-email.com/auth/";
-  signedIn$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private urlPrefix:string = "https://api.angular-email.com/auth/";
+  signedIn$:BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private http:HttpClient) {
-    console.log(this.http);
   }
 
   usernameAvailable(username:string)
