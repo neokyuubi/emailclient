@@ -13,19 +13,14 @@ export class EmailShowComponent implements OnInit
 
   email:Partial<Email> = {};
 
-  constructor(private activatedRoute:ActivatedRoute, private emailService:EmailService) { }
+  constructor(private activatedRoute:ActivatedRoute, private emailService:EmailService ) { }
 
   ngOnInit(): void
-  {
-    this.activatedRoute.params.pipe(
-      switchMap(({id})=>
-      {
-        return this.emailService.getEmail(id);
-      })
-    ).subscribe((email)=>
+  {    
+    this.activatedRoute.data.subscribe(({email})=>
     {
       this.email = email;
-    })
+    });
   }
 
 }

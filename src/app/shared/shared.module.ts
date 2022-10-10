@@ -5,12 +5,14 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
   declarations: [
     InputComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { HeaderComponent } from './header/header.component';
   exports:
   [
     InputComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }

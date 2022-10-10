@@ -30,9 +30,7 @@ export class EmailService {
 
   getEmails()
   {
-    return this.http.get<EmailService[]>(`${this.urlPrefix}`).pipe(tap((data)=>{
-      console.log("EmailService", data);
-    }))
+    return this.http.get<Email[]>(`${this.urlPrefix}`);
   }
 
   getEmail(id:string)
