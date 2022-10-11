@@ -1,0 +1,10 @@
+<form [formGroup]="form" class="ui form">
+    <app-input label="To" [inputType]="inputTypes.email" [control]="getControl('to')"></app-input>
+    <app-input label="From" [inputType]="inputTypes.email" [control]="getControl('from')"></app-input>
+    <app-input label="Subject" [inputType]="inputTypes.text" [control]="getControl('subject')"></app-input>
+    <app-input label="Content" [inputType]="inputTypes.text" [control]="getControl('text')"></app-input>
+    <!-- <app-input [label]="email.html" [inputType]="inputTypes.text" [control]="getControl('html')"></app-input> -->
+    <button class="ui button primary">
+        Send
+    </button>
+</form>
