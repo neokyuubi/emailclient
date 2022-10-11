@@ -1,6 +1,7 @@
 <div class="field">
     <label >{{ label }}</label>
-    <input [formControl]="control" [type]="inputType" autocomplete="on" /> 
+    <input *ngIf="controlType == 'input'" [formControl]="control" [type]="inputType" autocomplete="on" /> 
+    <textarea *ngIf="controlType == 'textarea'" [formControl]="control"></textarea>
     <div *ngIf="control.touched && control.errors" class="ui pointing red basic label">
         <p *ngIf="control.touched && control.errors['required']">
             Value is required
@@ -19,6 +20,9 @@
         </p>
         <p *ngIf="control.touched && control.errors['noConnection']">
             Somehting went wrong, please check your connection !
+        </p>
+        <p *ngIf="control.touched && control.errors.email">
+            Enter a valid email !
         </p>
     </div>
 </div>
