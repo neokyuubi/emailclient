@@ -15,6 +15,7 @@ export class AuthService {
 
   private urlPrefix:string = "https://api.angular-email.com/auth/";
   signedIn$:BehaviorSubject<any> = new BehaviorSubject(null);
+  username:string = '';
 
   constructor(private http:HttpClient) {
   }
@@ -26,24 +27,28 @@ export class AuthService {
 
   signin(body:SigninRequest)
   {
-    return this.http.post<SigninResponse>(`${this.urlPrefix}signin`, body).pipe(tap(()=>{
-      this.signedIn$.next(true)
+    return this.http.post<SigninResponse>(`${this.urlPrefix}signin`, body).pipe(tap(({username})=>
+    {
+      this.signedIn$.next(true);
+      this.username = username;
     }));
   }
 
   signup(body:SignupRequestBody)
   {
-    return this.http.post<SignupResponse>(`${this.urlPrefix}signup`, body).pipe(tap((result)=>
+    return this.http.post<SignupResponse>(`${this.urlPrefix}signup`, body).pipe(tap(({username})=>
     {
       this.signedIn$.next(true);
+      this.username = username;
     }));
   }
 
   checkAuth()
   {
-    return this.http.get<CheckAuthResponse>(`${this.urlPrefix}signedin`).pipe(tap(({authenticated}) =>
+    return this.http.get<CheckAuthResponse>(`${this.urlPrefix}signedin`).pipe(tap(({authenticated, username}) =>
     {      
       this.signedIn$.next(authenticated);
+      this.username = username ? username : '';
     }));
   }
 

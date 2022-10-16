@@ -7,9 +7,15 @@
         <div>
             To: {{ email.to }}
         </div>
-        <hr>
-        <div [innerHtml]="email.html">
-            
-        </div>
+    </div>
+    <div>
+        <app-email-reply [email]="email"></app-email-reply>
     </div>
 </div>
+<div class="ui divider"></div>
+<div [innerHtml]="email.html"></div>
+
+<!-- <app-modal (dismiss)="showModal = false" *ngIf="showModal">
+    <div modattitle>Reply</div>
+    <app-email-form (emailSubmit)="externalSubmit(email)" ></app-email-form>
+</app-modal> -->

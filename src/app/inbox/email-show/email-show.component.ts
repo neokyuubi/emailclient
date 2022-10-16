@@ -11,7 +11,7 @@ import { EmailService, Email } from '../email.service';
 export class EmailShowComponent implements OnInit 
 {
 
-  email:Partial<Email> = {};
+  email!:Email;
 
   constructor(private activatedRoute:ActivatedRoute, private emailService:EmailService ) { }
 
@@ -22,5 +22,7 @@ export class EmailShowComponent implements OnInit
       this.email = email;
     });
   }
+
+
 
 }

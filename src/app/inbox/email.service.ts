@@ -37,4 +37,9 @@ export class EmailService {
   {
     return this.http.get<Email>(`${this.urlPrefix}${id}`);
   }
+
+  sendEmail(email:Email)
+  {
+    return this.http.post<any>(`${this.urlPrefix}`, email);
+  }
 }
